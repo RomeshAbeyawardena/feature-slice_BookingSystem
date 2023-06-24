@@ -11,5 +11,6 @@ public record ApplicationSettings
     }
 
     public string? DefaultConnectionStringName { get; set; }
+    public string? EnvironmentName { get; set; }
     public string? ConnectionString { get; set; }
 }

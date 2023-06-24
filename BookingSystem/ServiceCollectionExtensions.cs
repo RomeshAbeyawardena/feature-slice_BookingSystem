@@ -28,7 +28,7 @@ public static class ServiceCollectionExtensions
                 var connectionString = getConnectionString(applicationServices);
                 if (!string.IsNullOrEmpty(connectionString))
                 {
-                    opt.UseSqlServer(connectionString);
+                    opt.UseSqlServer(connectionString, opt => opt.MigrationsAssembly("BookingSystem.Api"));
                 }
             });
     }

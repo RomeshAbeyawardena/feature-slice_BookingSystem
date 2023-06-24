@@ -1,8 +1,11 @@
 ﻿using BookingSystem.Contracts;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookingSystem.Models;
-
+[Table(nameof(Booking))]
 public record Booking : IBooking {
+    [Key]
     public Guid? Id { get; set; }
     public Guid? RecipientContactId { get; set; }
     public Guid? SenderContactId { get; set; }
