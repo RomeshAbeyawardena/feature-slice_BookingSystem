@@ -8,6 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\index.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\index.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BookingSystem\BookingSystem.csproj" />
   </ItemGroup>
   <ItemGroup>

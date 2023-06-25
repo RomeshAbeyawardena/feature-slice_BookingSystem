@@ -1,0 +1,23 @@
+html
+body {
+    background-color: #333;
+    color: #fff;
+    font-family: 'Antic Slab', serif;
+    width:100%;
+}
+div.content {
+    width:980px;
+    margin:auto;
+}
+    div.content p:first-child {
+        margin-top: 0.5rem;
+    }
+    div.content p {
+        margin: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    span.title {
+        font-weight: bolder;
+        margin-right: 0.5rem;
+    }
