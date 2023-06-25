@@ -24,11 +24,13 @@ services
         .RegisterServicesFromAssemblies(assemblies))
     .AddControllers();
 services
-    .AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo
+    .AddSwaggerGen(c => {
+        c.CustomSchemaIds(c => c.FullName); 
+        c.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "Booking System API",
         Version = "v1"
-    }));
+    }); });
 
 var app = builder.Build();
 

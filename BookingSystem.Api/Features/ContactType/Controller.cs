@@ -13,26 +13,26 @@ namespace BookingSystem.Api.Features.ContactType;
 public class Controller : RST.DependencyInjection.Extensions.EnableInjectionBase<InjectAttribute>
 {
     const string ROUTE_URL = $"{Api.API_BASE_URL}/ContactType";
-    [Inject] protected IMediator? mediator;
-    [Inject] protected IMapper? mapper;
+    [Inject] protected IMediator? Mediator { get; set; }
+    [Inject] protected IMapper? Mapper { get; set; }
     public Controller(IServiceProvider serviceProvider) : base(serviceProvider)
     {
         base.ConfigureInjection();
     }
 
     [HttpGet, Route("{contactTypeId?}")]
-    public async Task<IEnumerable<ContactType>> GetContactTypes([FromQuery]Query query, CancellationToken cancellationToken, Guid? contactTypeId)
+    public async Task<IEnumerable<ContactType>> GetContactTypes([FromQuery]Query query, CancellationToken cancellationToken, [FromRoute]Guid? contactTypeId)
     {
         query.ContactTypeId = contactTypeId;
-        var q = await mediator!.Send(query, cancellationToken);
+        var q = await Mediator!.Send(query, cancellationToken);
         return await q
-            .ProjectTo<ContactType>(mapper!.ConfigurationProvider)
+            .ProjectTo<ContactType>(Mapper!.ConfigurationProvider)
             .ToArrayAsync(cancellationToken);
     }
 
     [HttpPost]
-    public async Task<ContactType> SaveContactTypes(Command command, CancellationToken cancellationToken)
+    public async Task<ContactType> SaveContactTypes([FromForm]Command command, CancellationToken cancellationToken)
     {
-        return mapper!.Map<ContactType>(await mediator!.Send(command, cancellationToken));
+        return Mapper!.Map<ContactType>(await Mediator!.Send(command, cancellationToken));
     }
 }

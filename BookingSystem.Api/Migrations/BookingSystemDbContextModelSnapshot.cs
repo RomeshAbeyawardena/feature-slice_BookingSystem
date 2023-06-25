@@ -29,25 +29,27 @@ namespace BookingSystem.Api.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Area")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR(200)");
 
                     b.Property<string>("BuildingName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR(200)");
 
                     b.Property<string>("BuildingNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR(200)");
 
                     b.Property<Guid?>("CountyId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Region")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR(200)");
 
                     b.Property<string>("StreetName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR(200)");
 
                     b.Property<string>("StreetNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR(200)");
 
                     b.HasKey("Id");
 
@@ -100,7 +102,8 @@ namespace BookingSystem.Api.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Alias")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR(200)");
 
                     b.Property<Guid>("ContactId")
                         .HasColumnType("uniqueidentifier");
@@ -141,10 +144,10 @@ namespace BookingSystem.Api.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR(200)");
 
                     b.Property<string>("ShortName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR(2000)");
 
                     b.HasKey("Id");
 
@@ -161,7 +164,7 @@ namespace BookingSystem.Api.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR(200)");
 
                     b.HasKey("Id");
 

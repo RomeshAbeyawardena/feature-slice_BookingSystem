@@ -6,7 +6,7 @@ namespace BookingSystem.Features.ContactType.Save;
 public class Handler : RST.Mediatr.Extensions.RepositoryHandlerBase<Command, Models.ContactType, Models.ContactType>
 {
     [Inject]
-    protected IMapper? mapper;
+    protected IMapper? Mapper { get; set; }
 
     public Handler(IServiceProvider serviceProvider) : base(serviceProvider)
     {
@@ -14,6 +14,6 @@ public class Handler : RST.Mediatr.Extensions.RepositoryHandlerBase<Command, Mod
 
     public override Task<Models.ContactType> Handle(Command request, CancellationToken cancellationToken)
     {
-        return base.ProcessSave(request, mapper!.Map<Models.ContactType>, cancellationToken);
+        return base.ProcessSave(request, Mapper!.Map<Models.ContactType>, cancellationToken);
     }
 }

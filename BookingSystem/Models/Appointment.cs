@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using EAppointmentType = BookingSystem.Enumerations.AppointmentType;
 namespace BookingSystem.Models;
 
-[Table(nameof(Appointment)]
+[Table(nameof(Appointment))]
 public record Appointment : IAppointment {
     [Key]
     public Guid? Id { get; set; }

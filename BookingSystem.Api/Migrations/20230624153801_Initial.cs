@@ -29,8 +29,8 @@ namespace BookingSystem.Api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ShortName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "NVARCHAR(200)", nullable: true),
+                    ShortName = table.Column<string>(type: "NVARCHAR(2000)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -66,7 +66,7 @@ namespace BookingSystem.Api.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CountryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "NVARCHAR(200)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -85,12 +85,12 @@ namespace BookingSystem.Api.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CountyId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    BuildingNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BuildingName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StreetNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StreetName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Area = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Region = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    BuildingNumber = table.Column<string>(type: "NVARCHAR(200)", nullable: true),
+                    BuildingName = table.Column<string>(type: "NVARCHAR(200)", nullable: true),
+                    StreetNumber = table.Column<string>(type: "NVARCHAR(200)", nullable: true),
+                    StreetName = table.Column<string>(type: "NVARCHAR(200)", nullable: true),
+                    Area = table.Column<string>(type: "NVARCHAR(200)", nullable: false),
+                    Region = table.Column<string>(type: "NVARCHAR(200)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -109,7 +109,7 @@ namespace BookingSystem.Api.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ContactId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AddressId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Alias = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Alias = table.Column<string>(type: "NVARCHAR(200)", nullable: false),
                     IsPrimary = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>

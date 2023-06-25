@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookingSystem.Models;
-[Table(nameof(Country))]
+[Table(nameof(County))]
 public record County : ICounty {
     [Key]
     public Guid? Id { get; set; }

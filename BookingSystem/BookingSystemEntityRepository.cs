@@ -10,21 +10,21 @@ public class BookingSystemEntityRepository<T> : RST.EntityFrameworkCore.EntityFr
 {
     public BookingSystemEntityRepository(BookingSystemDbContext context, ISubject<ExpressionStarter<T>> subject) : base(context, subject)
     {
-
+        base.QueryBuilder.DefaultExpression = t => true;
     }
-    
-     public DbSet<Address>? Addresses { get; set; }
-     public DbSet<Appointment>? Appointments { get; set; }
-     public DbSet<AppointmentType>? AppointmentTypes { get; set; }
-     public DbSet<Booking>? Bookings { get; set; }
-    
+
+    public DbSet<Address>? Addresses { get; set; }
+    public DbSet<Appointment>? Appointments { get; set; }
+    public DbSet<AppointmentType>? AppointmentTypes { get; set; }
+    public DbSet<Booking>? Bookings { get; set; }
+
     public DbSet<Contact>? Contacts { get; set; }
-    
+
     public DbSet<ContactAddress>? ContactAddresses { get; set; }
-    
+
     public DbSet<ContactType>? ContactTypes { get; set; }
-    
+
     public DbSet<Country>? Countries { get; set; }
-    
+
     public DbSet<County>? Counties { get; set; }
 }
