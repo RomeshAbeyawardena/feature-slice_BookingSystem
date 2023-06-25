@@ -42,9 +42,12 @@ app.MapGet("/", async (s) =>
     Exception? lastException = default;
 
     var connectionCheck = Task.FromResult(true);
-
-    if (!applicationSettings.LastSuccessfulDatabaseCheckTimestamp.HasValue
-        || DateTimeOffset.UtcNow.Subtract(applicationSettings.LastSuccessfulDatabaseCheckTimestamp.Value).TotalMinutes > 15)
+    var dateNow = DateTimeOffset.UtcNow;
+    var hasConnectionBeenCheckedNow = false;
+    if (!applicationSettings
+            .LastSuccessfulDatabaseCheckTimestamp.HasValue
+        || dateNow.Subtract(applicationSettings
+            .LastSuccessfulDatabaseCheckTimestamp.Value).TotalMinutes > 15)
     {
         connectionCheck = Task.Run(() =>
         {
@@ -53,7 +56,9 @@ app.MapGet("/", async (s) =>
             {
                 connection.Open();
                 connectionSuccessful = true;
-                applicationSettings.LastSuccessfulDatabaseCheckTimestamp = DateTime.UtcNow;
+                hasConnectionBeenCheckedNow = true;
+                applicationSettings
+                    .LastSuccessfulDatabaseCheckTimestamp = DateTime.UtcNow;
             }
             catch (Exception exception)
             {
@@ -73,17 +78,19 @@ app.MapGet("/", async (s) =>
     await response
             .WriteAsync($"\r\n{isDebug.IIf("Connection string", "Database name")}: {isDebug.IIf(connection.ConnectionString, connection.Database)}");
     await response
-        .WriteAsync($"\r\nConnection status: {(await connectionCheck).IIf("Successful", $"Failed: {lastException?.Message}")}");
+        .WriteAsync($"\r\nConnection status: {(await connectionCheck)
+            .IIf($"Successful {hasConnectionBeenCheckedNow.IIf(string.Empty, "(Cached)")}", 
+                $"Failed: {lastException?.Message}")}");
     
     if (applicationSettings.LastSuccessfulDatabaseCheckTimestamp.HasValue)
     {
         await response
-            .WriteAsync($"\r\nLast connection check: {DateTimeOffset.UtcNow.Subtract(
+            .WriteAsync($"\r\nLast connection check: {dateNow.Subtract(
                 applicationSettings.LastSuccessfulDatabaseCheckTimestamp.Value)}");
     }
 
     await response
-        .WriteAsync($"\r\nUptime: {DateTimeOffset.UtcNow.Subtract( 
+        .WriteAsync($"\r\nUptime: {dateNow.Subtract( 
             applicationSettings.StartedRunningTimestamp)}");
 });
 app.UseSwagger();
